@@ -2,6 +2,7 @@ package com.example.lenovo.daochulvxing.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.support.design.widget.NavigationView;
@@ -10,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -23,18 +25,23 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.lenovo.daochulvxing.R;
 import com.example.lenovo.daochulvxing.adapter.HomeVpAdapter;
 import com.example.lenovo.daochulvxing.base.BaseActivity;
+import com.example.lenovo.daochulvxing.bean.VersionInfo;
 import com.example.lenovo.daochulvxing.fragment.BanMiFragment;
 import com.example.lenovo.daochulvxing.fragment.MainFragment;
 import com.example.lenovo.daochulvxing.util.SpUtil;
+import com.example.lenovo.daochulvxing.util.UpdateManager;
 import com.jaeger.library.StatusBarUtil;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import presenter.EmptyPresenter;
+import presenter.ToolsPresenter;
 import retrofit2.http.Headers;
 import view.EmptyView;
+import view.ToolsView;
 
-public class HomeActivity extends BaseActivity<EmptyView, EmptyPresenter> implements View.OnClickListener {
+public class HomeActivity extends BaseActivity<ToolsView, ToolsPresenter> implements ToolsView,View.OnClickListener {
 
     private static boolean isExit=false;
     private Handler handlerExit=new Handler(){
@@ -57,16 +64,9 @@ public class HomeActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
     private TextView mname;
     private TextView guanzhu;
     private ImageView touxiang;
+    private VersionInfo.ResultEntity.InfoEntity info;
+    private String fileName;
 
-    @Override
-    protected EmptyPresenter initPresenter() {
-        return new EmptyPresenter();
-    }
-
-    @Override
-    protected int Layoutid() {
-        return R.layout.activity_home;
-    }
 
     public void initView() {
         StatusBarUtil.setLightMode(HomeActivity.this);
@@ -124,10 +124,26 @@ public class HomeActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
             }
         });
         touxiang = headerView.findViewById(R.id.head_touxiang);
-
+        TextView banben = headerView.findViewById(R.id.head_banben);
+        banben.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String token = (String) SpUtil.getParam("token", "");
+                mPresenter.initVersionInfo(token);
+            }
+        });
 
     }
 
+    @Override
+    protected ToolsPresenter initPresenter() {
+        return new ToolsPresenter();
+    }
+
+    @Override
+    protected int Layoutid() {
+        return R.layout.activity_home;
+    }
 
 
     @Override
@@ -184,5 +200,40 @@ public class HomeActivity extends BaseActivity<EmptyView, EmptyPresenter> implem
             finish();
             System.exit(0);
         }
+    }
+
+    @Override
+    public void Success(VersionInfo versionInfo) {
+        UpdateManager instance = UpdateManager.getInstance();
+        info = versionInfo.getResult().getInfo();
+        if (instance.updateApp(instance.getVersionName(this), info.getVersion())){
+            int type = 0;
+            if(luo.library.base.utils.UpdateManager.getInstance().isWifi(this)) {
+                type = 1;
+            }
+            if(false) {
+                type = 2;
+            }
+            String downLoadPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/downloads/";
+            File dir = new File(downLoadPath);
+            if(!dir.exists()) {
+                dir.mkdir();
+            }
+                                                             //getDownload_url()为接口中的下载路径
+            fileName = info.getDownload_url().substring(info.getDownload_url().lastIndexOf("/") + 1, info.getDownload_url().length());
+            if(fileName == null && TextUtils.isEmpty(fileName) && !fileName.contains(".apk")) {
+                fileName = this.getPackageName() + ".apk";
+            }
+            File file = new File(downLoadPath + fileName);
+            UpdateManager.getInstance().setType(type).setUrl(info.getDownload_url()).setUpdateMessage("更新了UI\n添加图片缩放功能").setFileName(fileName).setIsDownload(file.exists());
+            if(type == 1 && !file.exists()) {
+                UpdateManager.getInstance().downloadFile(this);
+            } else {
+                UpdateManager.getInstance().showDialog(this);
+            }
+        }
+    }
+    @Override
+    public void fain(String msg) {
     }
 }

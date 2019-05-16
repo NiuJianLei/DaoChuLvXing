@@ -12,6 +12,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!--请求安装未知权限-->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
     <uses-permission
         android:name="android.permission.WRITE_APN_SETTINGS"
         tools:ignore="ProtectedPermissions" />
@@ -98,10 +100,13 @@
         <activity android:name=".activity.BanMiXiangActivity" />
         <activity android:name=".activity.AgentWebActivity" />
         <activity android:name=".activity.SubjectActivity" />
-        <activity android:name=".activity.CommentActivity"></activity>
+        <activity android:name=".activity.CommentActivity" />
+
         <meta-data
             android:name="channel"
             android:value="${CHANNEL_VALUE}" />
+
+        <activity android:name=".activity.ToolsActivity"></activity>
     </application>
 
 </manifest>

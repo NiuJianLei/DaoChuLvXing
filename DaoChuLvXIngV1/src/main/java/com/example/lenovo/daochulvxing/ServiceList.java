@@ -6,6 +6,7 @@ import com.example.lenovo.daochulvxing.bean.CommentBean;
 import com.example.lenovo.daochulvxing.bean.GuanZhu;
 import com.example.lenovo.daochulvxing.bean.LoginInfo;
 import com.example.lenovo.daochulvxing.bean.MyPerson;
+import com.example.lenovo.daochulvxing.bean.VersionInfo;
 import com.example.lenovo.daochulvxing.bean.XiangBean;
 import com.example.lenovo.daochulvxing.bean.ZhuanTiBean;
 
@@ -108,4 +109,8 @@ public interface ServiceList {
     //全部评论
     @GET("api/3.0/content/routes/{routeId}/reviews")
     Observable<CommentBean> getComment(@Path("routeId") int id,@Query("page") int page,@Header("banmi-app-token") String token);
+
+    //版本更新
+    @GET("api/app/common/getVersionInfo?operating_system=android")
+    Observable<VersionInfo> getVersionInfo(@Header("banmi-app-token") String token);
 }
