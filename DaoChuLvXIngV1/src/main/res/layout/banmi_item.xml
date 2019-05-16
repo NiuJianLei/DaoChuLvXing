@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/dp_8"
+    app:cardUseCompatPadding="true"
+    app:cardMaxElevation="@dimen/dp_8"
+    android:layout_marginTop="@dimen/dp_15"
+    android:layout_marginLeft="@dimen/dp_20"
+    android:layout_marginRight="@dimen/dp_20"
+    tools:context=".activity.HomeActivity">
+
+
+  <LinearLayout
+      android:layout_width="@dimen/dp_335"
+      android:layout_height="@dimen/dp_120"
+      android:orientation="horizontal"
+      >
+    <ImageView
+        android:layout_width="@dimen/dp_120"
+        android:layout_height="@dimen/dp_120"
+        android:src="@mipmap/ic_launcher_round"
+        android:id="@+id/banmi_touxiang"
+        />
+
+
+     <LinearLayout
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:orientation="vertical"
+         >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="杨晨"
+               android:id="@+id/banmi_name"
+               android:layout_marginTop="@dimen/dp_17"
+               android:layout_marginLeft="@dimen/dp_17"
+               android:textSize="@dimen/sp_22"
+               android:textColor="@color/c_333333"
+               />
+
+            <ImageView
+                android:id="@+id/banmi_follow"
+                android:layout_width="@dimen/dp_20"
+                android:layout_height="@dimen/dp_18"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/dp_20"
+                android:layout_marginRight="@dimen/dp_20"
+                android:src="@mipmap/follow_unselected" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="248人关注"
+            android:layout_marginLeft="@dimen/dp_17"
+            android:textColor="#999999"
+            android:id="@+id/banmi_guanzhu"
+            android:layout_marginTop="@dimen/dp_3"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+           <ImageView
+               android:layout_width="@dimen/dp_10"
+               android:layout_height="@dimen/dp_12"
+               android:src="@mipmap/position_icon"
+               android:layout_marginTop="@dimen/dp_12"
+               android:textColor="#999999"
+               android:layout_marginLeft="@dimen/dp_17"
+               />
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="@dimen/dp_10"
+               android:text="东京"
+               android:id="@+id/banmi_dizhi"
+               android:textColor="#999999"
+               />
+
+        </LinearLayout>
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/banmi_zuozhe"
+          android:text="日本国家旅游局专栏作者"
+          android:layout_marginTop="7dp"
+          android:layout_marginLeft="@dimen/dp_18"
+          />
+
+     </LinearLayout>
+
+
+
+  </LinearLayout>
+
+
+
+
+</android.support.v7.widget.CardView>

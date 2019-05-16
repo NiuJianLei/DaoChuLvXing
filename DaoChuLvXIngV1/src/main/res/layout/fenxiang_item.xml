@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="点击加载更多"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/c_fa6a13"
+        android:id="@+id/jiazai"
+        android:textSize="@dimen/sp_14" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_40"
+        android:layout_marginBottom="@dimen/dp_90"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:id="@+id/fenxiang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#eaeaea"
+            android:drawableLeft="@mipmap/share_button"
+            android:drawablePadding="@dimen/dp_10"
+            android:text="分享"
+            android:textColor="#636363"
+            android:textSize="@dimen/sp_14" />
+
+
+            <ImageView
+                android:layout_marginLeft="@dimen/dp_60"
+                android:layout_width="@dimen/dp_15"
+                android:layout_height="@dimen/dp_15"
+                android:src="@mipmap/collect_default"
+                android:layout_marginTop="@dimen/dp_3"
+                android:id="@+id/shoucang_image"
+                />
+
+            <TextView
+                android:id="@+id/shoucang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#eaeaea"
+                android:drawablePadding="@dimen/dp_10"
+                android:text="已收藏"
+                android:textColor="#636363"
+                android:textSize="@dimen/sp_14" />
+
+
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

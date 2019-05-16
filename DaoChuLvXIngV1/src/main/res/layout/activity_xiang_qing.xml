@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.XiangQingActivity">
+
+    <android.support.v7.widget.RecyclerView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/xiang_recycl"
+        android:layout_marginTop="@dimen/dp_13"
+    />
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_60"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF"
+
+        >
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/button_preview"
+            android:layout_marginRight="@dimen/dp_25"
+            android:textSize="@dimen/sp_15"
+            android:textColor="#FA6A13"
+            android:text="预览路线"
+            android:layout_marginTop="@dimen/dp_11"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_25"
+            android:layout_marginTop="@dimen/dp_11"
+            android:text="30"
+            android:textSize="@dimen/sp_15"
+            android:textColor="#ffffff"
+            android:background="@mipmap/button_pay_particulars"
+            />
+
+    </LinearLayout>
+</RelativeLayout>
