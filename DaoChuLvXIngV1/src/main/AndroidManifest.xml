@@ -3,6 +3,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.lenovo.daochulvxing">
 
+    <!-- BaiduMapStart -->
+    //获取设备网络状态，禁用后无法获取网络状态
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    //网络权限，当禁用后，无法进行检索等相关业务
+    <uses-permission android:name="android.permission.INTERNET" />
+    //读取设备硬件信息，统计数据
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    //读取系统信息，包含系统版本等信息，用作统计
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    //获取设备的网络状态，鉴权所需网络代理
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    //允许sd卡写权限，需写入地图数据，禁用后无法显示地图
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    //这个权限用于进行网络定位
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+    //这个权限用于访问GPS定位
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    //获取统计数据
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    //使用步行AR导航，配置Camera权限
+    <uses-permission android:name="android.permission.CAMERA" />
+    //程序在手机屏幕关闭后后台进程仍然运行
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!-- BaiduMapEnd -->
+    <!-- 这个权限用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 这个权限用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <!-- 打开相册权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!-- 请求访问使用照相设备 -->
@@ -12,8 +43,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <!--请求安装未知权限-->
-    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+    <!-- 请求安装未知权限 -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission
         android:name="android.permission.WRITE_APN_SETTINGS"
         tools:ignore="ProtectedPermissions" />
@@ -106,7 +137,19 @@
             android:name="channel"
             android:value="${CHANNEL_VALUE}" />
 
-        <activity android:name=".activity.ToolsActivity"></activity>
+        <activity android:name=".activity.ToolsActivity" />
+
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="QlmzIro37x1pxpjsvgoAnkPNO2iheHG5" />
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" />
+
+        <activity android:name=".activity.GoToActivity" />
+        <activity android:name=".activity.DiQuActivity"></activity>
     </application>
 
 </manifest>

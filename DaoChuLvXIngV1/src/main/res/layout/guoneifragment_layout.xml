@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:clipChildren="false"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/ll"
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/donghua"
+            android:id="@+id/donghua"
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/mainll"
+        >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="定位/最近访问"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_15"
+        />
+
+    <RelativeLayout
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="@dimen/dp_50"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/dp_15"
+        android:layout_marginLeft="@dimen/dp_15"
+        android:backgroundTint="@color/white"
+        >
+        <ImageView
+            android:layout_centerVertical="true"
+            android:layout_width="@dimen/dp_15"
+            android:layout_height="@dimen/dp_30"
+            android:src="@mipmap/position_icon"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_4"
+            android:id="@+id/jiantou"
+            />
+        <TextView
+            android:layout_marginTop="@dimen/dp_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="北京"
+            android:textSize="@dimen/sp_20"
+            android:layout_toRightOf="@+id/jiantou"
+            android:id="@+id/fangwen"
+            />
+
+</RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="热门城市"
+        android:layout_margin="@dimen/dp_15"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/remenA"
+            android:layout_margin="@dimen/dp_15"
+            >
+            <ImageView
+                android:layout_centerVertical="true"
+                android:layout_width="@dimen/dp_15"
+                android:layout_height="@dimen/dp_30"
+                android:src="@mipmap/position_icon"
+                android:layout_marginLeft="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_3"
+                android:id="@+id/remen1"
+                />
+            <TextView
+                android:layout_marginTop="@dimen/dp_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="北京"
+                android:textSize="@dimen/sp_20"
+                android:layout_toRightOf="@+id/remen1"
+                android:layout_margin="@dimen/dp_5"
+                />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:id="@+id/remenB"
+            android:layout_marginTop="@dimen/dp_15"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:layout_weight="1"
+            >
+            <ImageView
+                android:layout_centerVertical="true"
+                android:layout_width="@dimen/dp_15"
+                android:layout_height="@dimen/dp_30"
+                android:src="@mipmap/position_icon"
+                android:layout_marginLeft="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_3"
+                android:id="@+id/remen2"
+                />
+            <TextView
+                android:layout_marginTop="@dimen/dp_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="北京"
+                android:textSize="@dimen/sp_20"
+                android:layout_toRightOf="@+id/remen2"
+                android:layout_margin="@dimen/dp_5"
+                android:id="@+id/remena"
+                />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/remenC"
+            android:layout_marginTop="@dimen/dp_15"
+            android:layout_marginLeft="@dimen/dp_15"
+            >
+            <ImageView
+                android:layout_centerVertical="true"
+                android:layout_width="@dimen/dp_15"
+                android:layout_height="@dimen/dp_30"
+                android:src="@mipmap/position_icon"
+                android:layout_marginLeft="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_3"
+                android:id="@+id/remen3"
+                />
+            <TextView
+                android:layout_marginTop="@dimen/dp_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="北京"
+                android:textSize="@dimen/sp_20"
+                android:layout_toRightOf="@+id/remen3"
+                android:layout_margin="@dimen/dp_5"
+                android:id="@+id/remenb"
+                />
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/remenD"
+            android:layout_margin="@dimen/dp_15"
+            >
+            <ImageView
+                android:layout_centerVertical="true"
+                android:layout_width="@dimen/dp_15"
+                android:layout_height="@dimen/dp_30"
+                android:src="@mipmap/position_icon"
+                android:layout_marginLeft="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_3"
+                android:id="@+id/remen4"
+                />
+            <TextView
+                android:layout_marginTop="@dimen/dp_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="北京"
+                android:textSize="@dimen/sp_20"
+                android:layout_toRightOf="@+id/remen4"
+                android:layout_margin="@dimen/dp_5"
+                android:id="@+id/remenc"
+                />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:id="@+id/remenE"
+            android:layout_marginTop="@dimen/dp_15"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:layout_weight="1"
+            >
+            <ImageView
+                android:layout_centerVertical="true"
+                android:layout_width="@dimen/dp_15"
+                android:layout_height="@dimen/dp_30"
+                android:src="@mipmap/position_icon"
+                android:layout_marginLeft="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_3"
+                android:id="@+id/remen5"
+                />
+            <TextView
+                android:layout_marginTop="@dimen/dp_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="北京"
+                android:textSize="@dimen/sp_20"
+                android:layout_toRightOf="@+id/remen5"
+                android:layout_margin="@dimen/dp_5"
+                android:id="@+id/remend"
+                />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/remenF"
+            android:layout_marginTop="@dimen/dp_15"
+            android:layout_marginLeft="@dimen/dp_15"
+            >
+            <ImageView
+                android:layout_centerVertical="true"
+                android:layout_width="@dimen/dp_15"
+                android:layout_height="@dimen/dp_30"
+                android:src="@mipmap/position_icon"
+                android:layout_marginLeft="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_3"
+                android:id="@+id/remen6"
+                />
+            <TextView
+                android:layout_marginTop="@dimen/dp_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="北京"
+                android:textSize="@dimen/sp_20"
+                android:layout_toRightOf="@+id/remen6"
+                android:layout_margin="@dimen/dp_5"
+                android:id="@+id/remene"
+                />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/diqu_listview"
+            />
+    </LinearLayout>
+    <com.example.lenovo.daochulvxing.weight.SideBar
+        android:layout_width="@dimen/dp_20"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:layout_alignParentRight="true"
+        android:id="@+id/sideBar"/>
+</RelativeLayout>

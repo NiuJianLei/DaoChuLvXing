@@ -2,7 +2,6 @@ package com.example.lenovo.daochulvxing.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.support.design.widget.NavigationView;
@@ -11,12 +10,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,34 +23,31 @@ import com.example.lenovo.daochulvxing.adapter.HomeVpAdapter;
 import com.example.lenovo.daochulvxing.base.BaseActivity;
 import com.example.lenovo.daochulvxing.bean.VersionInfo;
 import com.example.lenovo.daochulvxing.fragment.BanMiFragment;
+import com.example.lenovo.daochulvxing.fragment.FindFragment;
 import com.example.lenovo.daochulvxing.fragment.MainFragment;
+import com.example.lenovo.daochulvxing.fragment.MyFragment;
 import com.example.lenovo.daochulvxing.util.SpUtil;
-import com.example.lenovo.daochulvxing.util.UpdateManager;
 import com.jaeger.library.StatusBarUtil;
 
-import java.io.File;
 import java.util.ArrayList;
 
 import presenter.EmptyPresenter;
-import presenter.ToolsPresenter;
-import retrofit2.http.Headers;
 import view.EmptyView;
-import view.ToolsView;
 
-public class HomeActivity extends BaseActivity<ToolsView, ToolsPresenter> implements ToolsView,View.OnClickListener {
+public class HomeActivity extends BaseActivity<EmptyView, EmptyPresenter> implements View.OnClickListener {
 
-    private static boolean isExit=false;
-    private Handler handlerExit=new Handler(){
+    private static boolean isExit = false;
+    private Handler handlerExit = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            isExit=false;
+            isExit = false;
         }
     };
 
     private ViewPager mHomeVp;
     private TabLayout mHomeTab;
     private ArrayList<Fragment> fraglist;
-    private String[] title = {"首页", "伴米"};
+    private String[] title = {"怎么玩", "发现", "伴米", "我的"};
     private ImageView mTouxiang;
     private NavigationView mHomepageNavig;
     private DrawerLayout mHomepageDrawer;
@@ -66,20 +59,25 @@ public class HomeActivity extends BaseActivity<ToolsView, ToolsPresenter> implem
     private ImageView touxiang;
     private VersionInfo.ResultEntity.InfoEntity info;
     private String fileName;
+    /**
+     * 东京
+     */
+    private TextView mToolbarTitle;
 
 
     public void initView() {
+        //修改状态栏字体颜色
         StatusBarUtil.setLightMode(HomeActivity.this);
 
         mHomeVp = (ViewPager) findViewById(R.id.home_vp);
         mHomeTab = (TabLayout) findViewById(R.id.home_tab);
         mTouxiang = (ImageView) findViewById(R.id.touxiang);
-        mHomepageNavig = (NavigationView) findViewById(R.id.homepage_navig);
-        mHomepageDrawer = (DrawerLayout) findViewById(R.id.homepage_drawer);
         mHomeToolbar = (Toolbar) findViewById(R.id.home_toolbar);
         fraglist = new ArrayList<>();
         fraglist.add(new MainFragment());
+        fraglist.add(new FindFragment());
         fraglist.add(new BanMiFragment());
+        fraglist.add(new MyFragment());
         HomeVpAdapter adapter = new HomeVpAdapter(getSupportFragmentManager(), fraglist, title);
         mHomeVp.setAdapter(adapter);
         mHomeTab.setupWithViewPager(mHomeVp);
@@ -88,13 +86,16 @@ public class HomeActivity extends BaseActivity<ToolsView, ToolsPresenter> implem
             if (mHomeTab.getTabAt(i) != null) {
                 if (i == 0) {
                     mHomeTab.getTabAt(i).setIcon(R.drawable.tab_home_selected);
-                } else {
+                } else if (i == 1) {
                     mHomeTab.getTabAt(1).setIcon(R.drawable.tab_banmi_selected);
+                } else {
+                    mHomeTab.getTabAt(2).setIcon(R.drawable.tab_banmi_selected);
                 }
             }
         }
         mTouxiang.setOnClickListener(this);
 
+/*
 
         //获取侧滑中的头布局
         View headerView = mHomepageNavig.getHeaderView(0);
@@ -134,10 +135,22 @@ public class HomeActivity extends BaseActivity<ToolsView, ToolsPresenter> implem
         });
 
     }
+*/
+        mToolbarTitle = (TextView) findViewById(R.id.toolbar_title);
+
+        mToolbarTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, DiQuActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        }
 
     @Override
-    protected ToolsPresenter initPresenter() {
-        return new ToolsPresenter();
+    protected EmptyPresenter initPresenter() {
+        return new EmptyPresenter();
     }
 
     @Override
@@ -152,7 +165,8 @@ public class HomeActivity extends BaseActivity<ToolsView, ToolsPresenter> implem
             default:
                 break;
             case R.id.touxiang:
-                mHomepageDrawer.openDrawer(Gravity.LEFT);
+                Intent intent = new Intent(HomeActivity.this, APersonActivity.class);
+                startActivity(intent);
                 break;
         }
     }
@@ -164,16 +178,16 @@ public class HomeActivity extends BaseActivity<ToolsView, ToolsPresenter> implem
         String sex = (String) SpUtil.getParam("sex", "");
         String name = (String) SpUtil.getParam("name", "");
         String desc = (String) SpUtil.getParam("desc", "");
-        mname.setText(name);
-        mdesc.setText(desc);
+//        mname.setText(name);
+//        mdesc.setText(desc);
 
         String photourl = (String) SpUtil.getParam("photourl", "");
         RequestOptions options = RequestOptions.circleCropTransform();
-        Glide.with(this)
+       /* Glide.with(this)
                 .load(photourl)
                 .apply(options)
                 .into(touxiang);
-
+*/
         RequestOptions options2 = RequestOptions.circleCropTransform();
         Glide.with(this)
                 .load(photourl)
@@ -181,59 +195,28 @@ public class HomeActivity extends BaseActivity<ToolsView, ToolsPresenter> implem
                 .into(mTouxiang);
     }
 
+
+    //点击两次Back键退出程序
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode==KeyEvent.KEYCODE_BACK){
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
             initExit();
             return false;
         }
         return super.onKeyDown(keyCode, event);
     }
+
     private void initExit() {
-        if(!isExit){
-            isExit=true;
+        if (!isExit) {
+            isExit = true;
             Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
             //利用handler延迟发送更改状态信息
-            handlerExit.sendEmptyMessageDelayed(0,2000);
-        }
-        else{
+            handlerExit.sendEmptyMessageDelayed(0, 2000);
+        } else {
             finish();
             System.exit(0);
         }
     }
 
-    @Override
-    public void Success(VersionInfo versionInfo) {
-        UpdateManager instance = UpdateManager.getInstance();
-        info = versionInfo.getResult().getInfo();
-        if (instance.updateApp(instance.getVersionName(this), info.getVersion())){
-            int type = 0;
-            if(luo.library.base.utils.UpdateManager.getInstance().isWifi(this)) {
-                type = 1;
-            }
-            if(false) {
-                type = 2;
-            }
-            String downLoadPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/downloads/";
-            File dir = new File(downLoadPath);
-            if(!dir.exists()) {
-                dir.mkdir();
-            }
-                                                             //getDownload_url()为接口中的下载路径
-            fileName = info.getDownload_url().substring(info.getDownload_url().lastIndexOf("/") + 1, info.getDownload_url().length());
-            if(fileName == null && TextUtils.isEmpty(fileName) && !fileName.contains(".apk")) {
-                fileName = this.getPackageName() + ".apk";
-            }
-            File file = new File(downLoadPath + fileName);
-            UpdateManager.getInstance().setType(type).setUrl(info.getDownload_url()).setUpdateMessage("更新了UI\n添加图片缩放功能").setFileName(fileName).setIsDownload(file.exists());
-            if(type == 1 && !file.exists()) {
-                UpdateManager.getInstance().downloadFile(this);
-            } else {
-                UpdateManager.getInstance().showDialog(this);
-            }
-        }
-    }
-    @Override
-    public void fain(String msg) {
-    }
+
 }

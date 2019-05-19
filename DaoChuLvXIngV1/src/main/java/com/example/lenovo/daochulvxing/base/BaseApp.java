@@ -6,6 +6,8 @@ import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.WindowManager;
 
+import com.baidu.mapapi.CoordType;
+import com.baidu.mapapi.SDKInitializer;
 import com.example.lenovo.daochulvxing.R;
 import com.example.lenovo.daochulvxing.util.Constants;
 import com.example.lenovo.daochulvxing.util.SpUtil;
@@ -30,6 +32,7 @@ BaseApp extends Application {
     public void onCreate() {
         super.onCreate();
         sBaseApp = this;
+        //这个是几把友盟
         getScreenWH();
         initVersion();//版本更新
         setDayNightMode();
@@ -37,6 +40,14 @@ BaseApp extends Application {
                 ,"umeng",UMConfigure.DEVICE_TYPE_PHONE,"");//58edcfeb310c93091c000be2 5965ee00734be40b580001a0
         PlatformConfig.setQQZone("100424468", "c7394704798a158208a74ab60104f0ba");
         PlatformConfig.setSinaWeibo("1172778299", "632b1da480eb371c10b69bd01c719354","http://sns.whalecloud.com");
+
+            //这个是Baidumap
+        
+            //在使用SDK各组件之前初始化context信息，传入ApplicationContext
+            SDKInitializer.initialize(this);
+            //自4.3.0起，百度地图SDK所有接口均支持百度坐标和国测局坐标，用此方法设置您使用的坐标类型.
+            //包括BD09LL和GCJ02两种坐标，默认是BD09LL坐标。
+            SDKInitializer.setCoordType(CoordType.BD09LL);
     }
 
     private void initVersion() {

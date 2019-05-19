@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -33,6 +33,15 @@
                     android:layout_centerVertical="true"
                     android:layout_marginTop="@dimen/dp_18"
                     android:layout_marginLeft="@dimen/dp_22"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="东京"
+                    android:layout_centerInParent="true"
+                    android:drawableLeft="@mipmap/position_icon"
+                    android:id="@+id/toolbar_title"
                     />
 
                 <ImageView
@@ -72,14 +81,5 @@
 
     </LinearLayout>
 
-        <android.support.design.widget.NavigationView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/homepage_navig"
-            android:background="@color/white"
-            app:headerLayout="@layout/navig_head"
-            android:layout_gravity="left"
-            app:menu="@menu/mymenu"
-            />
 
-</android.support.v4.widget.DrawerLayout>
+</LinearLayout>

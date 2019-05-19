@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal">
+
+    <q.rorbin.verticaltablayout.VerticalTabLayout
+        android:id="@+id/tab"
+        android:layout_width="@dimen/dp_90"
+        android:layout_height="match_parent"
+        app:indicator_color="@color/transparent"
+        app:tab_margin="@dimen/dp_10" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/fragment_container"/>
+
+</LinearLayout>

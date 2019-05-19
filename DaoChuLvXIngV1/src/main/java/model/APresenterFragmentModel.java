@@ -2,6 +2,9 @@ package model;
 
 import com.example.lenovo.daochulvxing.ServiceList;
 import com.example.lenovo.daochulvxing.base.BaseModel;
+import com.example.lenovo.daochulvxing.util.BaseObserver;
+import com.example.lenovo.daochulvxing.util.HttpUtils;
+import com.example.lenovo.daochulvxing.util.RxUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,48 +32,31 @@ public class APresenterFragmentModel extends BaseModel {
         }else if (type==ServiceList.SING){
             map.put("description",info);
         }
-        Retrofit build = new Retrofit.Builder()
-                .baseUrl(ServiceList.singUrl)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .build();
-        ServiceList serviceList = build.create(ServiceList.class);
-        Observable<ResponseBody> setting = serviceList.getSetting(token, map);
-        setting.observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.newThread())
-                .subscribe(new Observer<ResponseBody>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(ResponseBody responseBody) {
-                        try {
-                            String string = responseBody.string();
-                            JSONObject jsonObject = new JSONObject(string);
-                            int code = jsonObject.getInt("code");
-                            if (code==0){
-                                iCallBack.onSuccess(string);
-                            }else{
-                                iCallBack.onFail(string);
-                            }
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
+        ServiceList apiserver = HttpUtils.getInstance().getApiserver(ServiceList.singUrl, ServiceList.class);
+        Observable<ResponseBody> setting1 = apiserver.getSetting(token, map);
+       setting1.compose(RxUtils.<ResponseBody>rxObserableSchedulerHelper())
+               .subscribe(new BaseObserver<ResponseBody>() {
+                   @Override
+                   public void onSubscribe(Disposable d) {
+                       addDisposable(d);
+                   }
+                   @Override
+                   public void onNext(ResponseBody responseBody) {
+                       try {
+                           String string = responseBody.string();
+                           JSONObject jsonObject = new JSONObject(string);
+                           int code = jsonObject.getInt("code");
+                           if (code==0){
+                               iCallBack.onSuccess(string);
+                           }else{
+                               iCallBack.onFail(string);
+                           }
+                       } catch (IOException e) {
+                           e.printStackTrace();
+                       } catch (JSONException e) {
+                           e.printStackTrace();
+                       }
+                   }
+               });
     }
 }

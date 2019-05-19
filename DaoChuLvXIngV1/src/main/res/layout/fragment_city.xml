@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/tv_lately"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_8"
+        android:text="当前定位"
+        android:textColor="@color/c_636363"
+        android:textSize="@dimen/sp_12" />
+
+    <RelativeLayout
+        android:id="@+id/rl_city"
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="@dimen/dp_25"
+        android:layout_alignLeft="@id/tv_lately"
+        android:layout_below="@id/tv_lately"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/tv_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:drawableLeft="@mipmap/position_icon"
+            android:gravity="center"
+            android:text="北京"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_14" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_hot_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/c_636363"
+        android:text="热门城市"
+        android:textSize="@dimen/sp_12"
+        android:layout_below="@id/rl_city"
+        android:layout_margin="@dimen/dp_12"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rec_hot_city"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_hot_city"
+        android:layout_alignLeft="@id/tv_hot_city"/>
+
+</RelativeLayout>

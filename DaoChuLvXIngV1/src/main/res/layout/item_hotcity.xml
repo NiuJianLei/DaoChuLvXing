@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false">
+
+    <TextView
+        android:id="@+id/tv_hot_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/c_636363"
+        android:text="热门城市"
+        android:textSize="@dimen/sp_12"
+        android:layout_margin="@dimen/dp_12"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rec_hot_city"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipChildren="false"
+        android:background="@color/c_eaeaea"
+        android:layout_below="@id/tv_hot_city"
+        android:layout_alignLeft="@id/tv_hot_city"/>
+
+</RelativeLayout>

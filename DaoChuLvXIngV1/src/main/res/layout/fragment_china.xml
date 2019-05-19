@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/c_eaeaea"
+    android:clipChildren="false">
+
+    <com.everywhere.trip.widget.SideBar
+        android:id="@+id/sideBar"
+        android:layout_width="@dimen/dp_20"
+        android:layout_height="@dimen/dp_600"
+        android:background="@color/white"
+        android:layout_alignParentRight="true"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toLeftOf="@id/sideBar"
+        android:layout_marginRight="@dimen/dp_10"
+        android:id="@+id/recView"/>
+
+</RelativeLayout>

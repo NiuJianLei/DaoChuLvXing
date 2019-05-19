@@ -3,6 +3,9 @@ package model;
 import com.example.lenovo.daochulvxing.ServiceList;
 import com.example.lenovo.daochulvxing.base.BaseModel;
 import com.example.lenovo.daochulvxing.bean.GuanZhu;
+import com.example.lenovo.daochulvxing.util.BaseObserver;
+import com.example.lenovo.daochulvxing.util.HttpUtils;
+import com.example.lenovo.daochulvxing.util.RxUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,36 +21,19 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class GuanZhuModel extends BaseModel {
     public void initGuanZhu(String token, int page, final ICallBack<ArrayList<GuanZhu.ResultEntity.BanmiEntity>>iCallBack){
-        Retrofit build = new Retrofit.Builder()
-                .baseUrl(ServiceList.singUrl)
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        ServiceList serviceList = build.create(ServiceList.class);
-        Observable<GuanZhu> guanZhu = serviceList.getGuanZhu(token, page);
-        guanZhu.observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.newThread())
-                .subscribe(new Observer<GuanZhu>() {
+        ServiceList apiserver = HttpUtils.getInstance().getApiserver(ServiceList.singUrl, ServiceList.class);
+        Observable<GuanZhu> guanZhu1 = apiserver.getGuanZhu(token, page);
+        guanZhu1.compose(RxUtils.<GuanZhu>rxObserableSchedulerHelper())
+                .subscribe(new BaseObserver<GuanZhu>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-
+                        addDisposable(d);
                     }
 
                     @Override
                     public void onNext(GuanZhu guanZhu) {
                         List<GuanZhu.ResultEntity.BanmiEntity> banmi = guanZhu.getResult().getBanmi();
                         iCallBack.onSuccess((ArrayList<GuanZhu.ResultEntity.BanmiEntity>) banmi);
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-
                     }
                 });
     }

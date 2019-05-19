@@ -3,8 +3,10 @@ package com.example.lenovo.daochulvxing;
 import com.example.lenovo.daochulvxing.bean.BanMiBean;
 import com.example.lenovo.daochulvxing.bean.BanXiangBean;
 import com.example.lenovo.daochulvxing.bean.CommentBean;
+import com.example.lenovo.daochulvxing.bean.DiquBean;
 import com.example.lenovo.daochulvxing.bean.GuanZhu;
 import com.example.lenovo.daochulvxing.bean.LoginInfo;
+import com.example.lenovo.daochulvxing.bean.Map_TabBean;
 import com.example.lenovo.daochulvxing.bean.MyPerson;
 import com.example.lenovo.daochulvxing.bean.VersionInfo;
 import com.example.lenovo.daochulvxing.bean.XiangBean;
@@ -113,4 +115,15 @@ public interface ServiceList {
     //版本更新
     @GET("api/app/common/getVersionInfo?operating_system=android")
     Observable<VersionInfo> getVersionInfo(@Header("banmi-app-token") String token);
+
+
+    //MapTabtitle
+    @GET("api/3.0/map/spots")
+    Observable<Map_TabBean> getMapTab(@Header("banmi-app-token")String token,@Query("tagID") String id,@Query("cityID") String csid);
+
+
+    //地区
+    @GET("api/3.0/map/cities")
+    Observable<DiquBean> getDiqu(@Header("banmi-app-token") String token);
+
 }
